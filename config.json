@@ -1,0 +1,77 @@
+{
+  "project": {
+    "name": "SimuAgent",
+    "version": "0.1.0",
+    "description": "Agent Platform Simulation"
+  },
+  "models": {
+    "default_provider": "ollama",
+    "providers": {
+      "ollama": {
+        "base_url": "http://localhost:11434",
+        "models": [
+          {
+            "name": "llama2",
+            "display_name": "Llama 2 7B",
+            "description": "Meta's Llama 2 7B model",
+            "enabled": true
+          },
+          {
+            "name": "codellama",
+            "display_name": "Code Llama 7B",
+            "description": "Code-specialized Llama model",
+            "enabled": true
+          },
+          {
+            "name": "mistral",
+            "display_name": "Mistral 7B",
+            "description": "Mistral AI's 7B model",
+            "enabled": false
+          }
+        ]
+      },
+      "openai": {
+        "api_key": "${OPENAI_API_KEY}",
+        "models": [
+          {
+            "name": "gpt-3.5-turbo",
+            "display_name": "GPT-3.5 Turbo",
+            "description": "OpenAI's GPT-3.5 Turbo",
+            "enabled": false
+          },
+          {
+            "name": "gpt-4",
+            "display_name": "GPT-4",
+            "description": "OpenAI's GPT-4",
+            "enabled": false
+          }
+        ]
+      }
+    }
+  },
+  "storage": {
+    "upload_dir": "./data/uploads",
+    "processed_dir": "./data/processed",
+    "database_path": "./database/simuagent.db",
+    "max_file_size": "50MB",
+    "supported_formats": ["txt", "json", "pdf", "csv", "md", "docx"]
+  },
+  "agent": {
+    "default_prompt": "你是一个专业的AI助手，基于提供的知识库回答用户问题。请确保回答准确、有用且友好。",
+    "max_context_length": 4096,
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "evaluation": {
+    "metrics": ["accuracy", "relevance", "helpfulness"],
+    "rating_scale": 5,
+    "export_formats": ["json", "csv", "jsonl"]
+  },
+  "server": {
+    "backend_host": "localhost",
+    "backend_port": 8000,
+    "frontend_host": "localhost",
+    "frontend_port": 5173,
+    "cors_origins": ["http://localhost:5173"]
+  }
+}
